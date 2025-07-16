@@ -2,7 +2,6 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
     <meta name="description" content="<%= page.title %>" />
-    <meta name="hexo-theme-A4" content="<%= theme.version %>" />
     <link rel="alternate icon" type="image/webp" href="<%- url_for(theme.favicon) %>">
     <title><%= config.title + (config.subtitle ? ' | ' + config.subtitle : '') %></title>
 
@@ -137,5 +136,6 @@
    <% if(theme.inject.css) { %>
         <%- css(theme.inject.css) %>
     <% } %>
-    <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/LXGWWenKai-Regular/result.css' /> 
+    <!--<link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/LXGWWenKai-Regular/result.css' />-->
+    <link rel="preload" as="style" crossorigin href="https://fontsapi.zeoseven.com/292/main/result.css" onload="this.rel='stylesheet'" onerror="this.href='https://fontsapi-storage.zeoseven.com/292/main/result.css'" />
 </head>

@@ -1,55 +1,20 @@
 <div class="footer">
-    <% if(path != 'index.html') { %>
-        <span> 
-            <%= theme.footerLink.info %> 
-
-            <% for (name in theme.footerLink) { %>
-                <% if(name != 'info') { %>
-                    / <a href="<%- url_for(theme.footerLink[name]) %>"> <%= name %> </a>
-                <% } %>
-
+    <span> 
+        <%= theme.footerLink.info %> 
+        <% for (name in theme.footerLink) { %>
+            <% if(name != 'info') { %>
+                / <a href="<%- url_for(theme.footerLink[name]) %>"> <%= name %> </a>
             <% } %>
-        </span>
-       
-    <% } %>
+        <% } %>
+    </span>
 </div>
-
-<% if(path == 'index.html' && (theme.indexInfo.allWordCount || theme.indexInfo.allViewCount)){ %>
-    <div class="footer-last-without-line">
-        <% if(theme.indexInfo.allWordCount) { %>
-        <span>本站总字数：<%= totalcount(site) %></span>
-        <% } %>
-        <% if(theme.indexInfo.allWordCount && theme.indexInfo.allViewCount) { %>
-            <div class="footer-last-span-right">
-        <% } else if(!theme.indexInfo.allWordCount && theme.indexInfo.allViewCount) { %>
-            <div>
-        <% } %>
-        <% if(theme.indexInfo.allViewCount) { %>
-                <span id="busuanzi_container_site_pv" class="">
-                    本站总访问：<span id="busuanzi_value_site_pv"></span>次
-                </span>
-            </div>
-        <% } %>
-    </div>
-<% } %>
 
 <!--这是指一条线往下的内容-->
 <div class="footer-last">
-    <% if(path == 'index.html'){ %>
-         <% if(theme.index.footer != null || theme.index.footer != "") { %>
-            <% if(theme.index.footer.length > "Email:".length && theme.index.footer.substring(0, 6) == "Email:") { %>
-                <% var email = theme.index.footer.substring(6, theme.index.footer.length) %>
-                <span class="index-footer-last-span">Email:<%- mail_to(email) %></span>
-            <% } else { %>
-                <span class="index-footer-last-span"><%= theme.index.footer %></span>
-            <% } %>
+    <span><%= theme.post.footer %></span>
+        <% if(theme.post.themeInfo) { %>
+            <span class="footer-last-span-right"><i>Power By <a href="https://hexo.io/zh-cn/index.html">Hexo</a>｜使用<a href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
         <% } %>
-    <% } else { %>
-            <span><%= theme.post.footer %></span>
-            <% if(theme.post.themeInfo) { %>
-                <span class="footer-last-span-right"><i>本站由<a href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
-            <% } %>
-    <% } %>
 </div>
 
 <% if(theme.cdn.enable) { %>
