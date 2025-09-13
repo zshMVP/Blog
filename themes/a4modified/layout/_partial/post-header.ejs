@@ -1,24 +1,22 @@
 <% if(is_post() && ('words' in page) && page.words != null) {%>
     <div class="index-header-line" >
-        <div id="hiddenHeaderContentArray" style="display: none;">
-            <% var headerContentArray = page.words %>
-            <% var headerContentArrayLength = headerContentArray.length %>
-            <% for(let i = 0; i < headerContentArrayLength; i++) { %>
-                <span><%= page.words[i] %></span>
-            <% } %>
-        </div>
-        <span id="targetSpan"></span>
+        <span><%= page.words %></span>
     </div>
 <% } else if(is_post() && page.categories.data.length > 0) { %>
     <div class="index-header-line">
-        <div id="hiddenHeaderContentArray" style="display: none;">
-                <span><%= page.categories.data[0].name %></span>
-        </div>
-        <span id="targetSpan"></span>
+        <span><%= page.categories.data[0].name %></span>
     </div>
 <% } %>
-<div class="header">
-    <div class="header-container">
+<nav class="nav  <%= is_post() && page.words == null && page.categories.data.length == 0 ? 'nav-noheaderline' : '' %>">
+    <ul class="nav-menu">
+        <% for (name in theme.menu) { %>
+            <%var path = theme.menu[name] + 'index.html' %>
+            <% var isActive = page.path === theme.menu[name] || page.path === path || page.path === path.substring(1); %>
+                <li><a class="nav-button <%= isActive ? 'active' : '' %>" href="<%- url_for(theme.menu[name]) %>"><%= name %></a></li>
+        <% } %>
+    </ul>
+
+<!--    <div class="header-container">
         <style>
             .header-img {
                 width: 56px;
@@ -51,24 +49,5 @@
             <a class="logo" href="<%- url_for() %>"><%= config.title %></a> 
             <span class="description"><%= config.description %></span> 
         </div>
-    </div>
-    
-   
-    <ul class="nav">
-        <% for (name in theme.menu) { %>
-            <% if(theme.menu[name].substring(1, theme.menu[name].length - 1) == path.substring(0, path.indexOf("/"))) { %>
-                <li><i>
-                    <% if(theme.color.enable) { %>
-                        <u>
-                            <a  href="<%- url_for(theme.menu[name]) %>"><%= name %></a>
-                        </u>
-                    <% } else { %>
-                        <a style="color: #4e7dde;" href="<%- url_for(theme.menu[name]) %>"><%= name %></a>
-                    <% } %>
-                </i></li>
-            <%} else {%>
-                <li><a href="<%- url_for(theme.menu[name]) %>"><%= name %></a></li>
-            <% } %>
-        <% } %>
-    </ul>
-</div>
+    </div>-->
+</nav>
